@@ -83,8 +83,9 @@ window.App = {
       self.setStatus("Transaction complete!");
       self.refreshBalance();
       //console.log(self.listenToEvents()[3]);
-      //self.listenToEvents();
+      self.DataMessage();
       //self.refreshStatus();
+      console.log("oprueba");
     }).catch(function(e) {
       console.log(e);
       self.setStatus("Error sending coin; see log.");
@@ -112,7 +113,7 @@ window.App = {
             self.DataOfWinner();
           }
           var hstatus = document.getElementById("status")                              // declaramos el porpietario
-          hstatus.innerHTML = event.args.state.valueOf();
+          hstatus.innerHTML = "Transaction complete!   "+event.args.state.valueOf();
         } else {
           console.error(error);
         }

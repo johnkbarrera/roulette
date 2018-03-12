@@ -59,6 +59,8 @@ window.App = {
     Roulette.deployed().then(function(instance) {
       return instance.Balance.call(account, {from: account});
     }).then(function(value) {
+      console.log(value);
+      console.log(value.valueOf());
       var balance_element = document.getElementById("balance");
       balance_element.innerHTML = (value.c[0]+1)/10000                          //value.valueOf();
     }).catch(function(e) {

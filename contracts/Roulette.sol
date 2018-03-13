@@ -18,7 +18,7 @@ contract Roulette {
     /* Events*/
     event InitialData (uint basePrice, uint playersTop, uint memberOfList);
     event MessageData (string msg,uint time, bool state);
-    event WinnerData (string msg, address adr);
+    event WinnerData (string msg, address adr , string name);
 
     /* Constructor */
     function Roulette() public {                //  uint _basePrice, uint _playersTop
@@ -45,7 +45,7 @@ contract Roulette {
       playerlist[winer].adr.transfer(this.balance);
       state = false;
 
-      WinnerData('Ganador es: ',playerlist[winer].adr);
+      WinnerData('Ganador es: ',playerlist[winer].adr,playerlist[winer].name);
       MessageData('Juego terminado',block.timestamp,state);
     }
 
@@ -55,10 +55,10 @@ contract Roulette {
   	}
 
     /*Mains functions*/
-     function participate(string _name) public payable {
+     function participate(string nameplayer) public payable {
       if(state == true){
         // add player to list
-        addPlayerToList( _name, msg.sender);
+        addPlayerToList(nameplayer, msg.sender);
         if(memberOfList>=playersTop){
           //finish the play
           rafflingAndfinishing();

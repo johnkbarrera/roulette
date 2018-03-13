@@ -1,25 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The roulette</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <title>RofW</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
   <script src="./app.js"></script>
 </head>
-<body>
-  <h1>Roulette</h1>
-  remember that you need to install metamask in the network rinkeby, to be able to play!
-  <h3>You have <span class="black"><span id="balance"></span> META</span></h3>
-  <h3>Cupos Maximos: <span id="players" >#</span></h3>
-  <h3>Precio: <span id="price" >#</span></h3>
-    <h1><span id="sta" >Jugando...</h1>
-  <h1><span id="disp" >disponibles</span></h1>
-  <img id="loader" src="https://media.giphy.com/media/7DG1UNlrybWJa/giphy.gif">
-  <br>
-  <h3>Nick Name: <input type="text" id="nick" placeholder="e.g., Radamantis"></input></h3>
-  <button id="send" onclick="App.play()">Jugar</button>
-  <br><br>
-  <span id="status"></span>
-  <br><br>
-  <span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>
+<body >
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+    <br>
+
+    <div class="alert alert-warning" role="alert">
+          <strong>Warning!</strong> Remember that you need to install metamask in the network rinkeby, to be able to play!
+    </div>
+
+    <main role="main" class="container" >
+
+      <center><h1  class="display-5"><strong>Black rabbits get lost in the woods</strong></h1></center>
+      <br>
+
+          <div class="jumbotron">
+
+                    <div class="col-sm-8 mx-auto">
+                      <p>Enable your <a href="https://metamask.io/">Metamask</a> account and start playing, We wish you good luck.</p>
+
+                      <strong>
+                        <p>
+                          Number of tickets: <span id="players" >#</span>
+                          <br>
+                          Price per ticket: <span id="price" >#</span>
+                          <br>
+                          Tickets available: <span id="tickets" >#</span>
+                        </p>
+                    </strong>
+
+                      <h1 class="display-5"><strong><span id="sta" >Playing...</strong></h1>
+                      <h1 class="display-5"><strong><span id="disp" >available</span></strong></h1>
+                      <img id="loader" src="https://media.giphy.com/media/7DG1UNlrybWJa/giphy.gif">
+                      <br>
+
+                      <form class="form-signin">
+                        <h1 id ="nicktag" class="h3 mb-3 font-weight-normal">Nick Name:</h1>
+                        <input id="nick" class="form-control" placeholder="e.g., Radamantis" required="" autofocus="">
+                        <br>
+                        <button id="send" class="btn btn-lg  btn-block btn-dark" type="submit" onclick="App.play()">Play</button>
+                        <center><p id="status" class="mt-5 mb-3 text-muted">© 2018</p></center>
+                      </form>
+                    </div>
+          </div>
+
+          <center><p class="mt-5 mb-3 text-muted">© 2018</p></center>
+          <br><br>
+
+
+
+    </main>
+
+
+
+
+
+
+
+
+
+  <!--  <span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>  -->
 </body>
 </html>

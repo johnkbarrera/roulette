@@ -19,7 +19,6 @@ var Roulette = contract(roulette_artifacts);
 var accounts;
 var account;
 
-
 window.App = {
   start: function() {
     var self = this;
@@ -41,7 +40,7 @@ window.App = {
       accounts = accs;
       account = accounts[0];
 
-      self.refreshBalance();
+      //self.refreshBalance();
       self.DataMessage();
       self.DataOfProcess();
     });
@@ -72,14 +71,15 @@ window.App = {
   play: function() {
     var self = this;
     var amount = parseInt('1.0');
-    var ninkname = document.getElementById("nick").value;
+    var nickname = ''+document.getElementById("nick").value;
+    console.log(nickname);
     this.setStatus("Initiating transaction... (please wait)");
     document.getElementById("loader").style.visibility="visible";   //visible
     Roulette.deployed().then(function(instance) {
-      return instance.participate(name, {
+      return instance.participate(nickname, {
         from: account,
         value: web3.toWei(amount, "ether"),
-        gas: 100000
+        gas: 150000
       });
     }).then(function() {
       self.setStatus("Transaction complete!");
@@ -109,13 +109,27 @@ window.App = {
               document.getElementById("loader").style.visibility="hidden";   //visible
           if (!event.args.state.valueOf()) {
             //Call juego terminado function  and rendering
-            console.log("juego terminado");
+            console.log("ggme over");
             var hsta = document.getElementById("sta")                              // declaramos el porpietario
-            hsta.innerHTML = "Juego terminado";
+            hsta.innerHTML = "Game over";
             self.DataOfWinner();
           }
-          var hstatus = document.getElementById("status")                              // declaramos el porpietario
-          hstatus.innerHTML = "Transaction complete!   "+event.args.state.valueOf();
+          var hstatus = document.getElementById("status")
+          var stt;
+          if(event.args.state.valueOf()){
+            stt = "The game is enabled";
+          }
+          else {
+            stt = "The game has finished";
+            //document.getElementById("status").style.visibility="hidden";
+
+            //document.getElementById("nicktag").style.visibility="hidden";
+
+            document.getElementById("nick").style.visibility="hidden";
+            document.getElementById("send").style.visibility="hidden";                         // declaramos el porpietario
+          }
+          hstatus.innerHTML = stt;
+          //hstatus.innerHTML = "Transaction complete!   "+event.args.state.valueOf();
         } else {
           console.error(error);
         }
@@ -139,6 +153,9 @@ window.App = {
           hprice.innerHTML = event.args.basePrice.valueOf()/1000000000000000000 + " ETH";
           var hdisp = document.getElementById("disp")                              // declaramos el porpietario
           hdisp.innerHTML = event.args.memberOfList.valueOf();
+          var htickets = document.getElementById("tickets")                              // declaramos el porpietario
+          htickets.innerHTML = event.args.playersTop.valueOf() - event.args.memberOfList.valueOf();
+
         } else {
           console.error(error);
         }
@@ -153,9 +170,12 @@ window.App = {
         toBlock: 'latest'
       }).watch(function(error, event) {
         if (!error) {
-          console.log("quien ganado");
+          console.log("who is win?");
+          console.log(event);
           var hdisp = document.getElementById("disp")                              // declaramos el porpietario
-          hdisp.innerHTML = "El ganador es: "+event.args.adr.valueOf();
+          hdisp.innerHTML = "The winner is: '"+event.args.name.valueOf()+"'   ";
+          var hnicktag = document.getElementById("nicktag")                              // declaramos el porpietario
+          hnicktag.innerHTML = event.args.adr.valueOf();
         } else {
           console.error(error);
         }

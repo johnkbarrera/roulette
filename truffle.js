@@ -3,10 +3,10 @@ require('babel-register')
 
 module.exports = {
   networks: {
-    development: {
+    local: {
       host: '127.0.0.1',
       port: 8545,
-      from: "0xD95AA0803888b38195fcCD62F68e121B8f4f1fc9",
+      //from: "0xD95AA0803888b38195fcCD62F68e121B8f4f1fc9",
       network_id: '*' // Match any network id
     },
     ropsten:  {

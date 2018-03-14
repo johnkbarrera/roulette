@@ -3,7 +3,7 @@ body {
   margin-right: 25%;
   margin-top: 5%;
   font-family: "Open Sans", sans-serif;
-  font-size: 80%;
+  font-size:90%;
 }
 
 label {
@@ -27,6 +27,7 @@ h1, h2 {
   vertical-align: middle;
   margin-top: 0px;
   margin-bottom: 10px;
+  font-size: 230%;
 }
 
 h2 {

@@ -18,6 +18,7 @@ var Roulette = contract(roulette_artifacts);
 // For application bootstrapping, check out window.addEventListener below.
 var accounts;
 var account;
+var priceforticket;
 
 window.App = {
   start: function() {
@@ -34,9 +35,9 @@ window.App = {
 
       if (accs.length == 0) {
         alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
+
         return;
       }
-
       accounts = accs;
       account = accounts[0];
 
@@ -53,24 +54,9 @@ window.App = {
     status.innerHTML = message;
   },
 
-  refreshBalance: function() {
-    var self = this;
-    Roulette.deployed().then(function(instance) {
-      return instance.Balance.call(account, {from: account});
-    }).then(function(value) {
-      console.log(value);
-      console.log(value.valueOf());
-      var balance_element = document.getElementById("balance");
-      balance_element.innerHTML = (value.c[0]+1)/10000                          //value.valueOf();
-    }).catch(function(e) {
-      console.log(e);
-      self.setStatus("Error getting balance; see log.");
-    });
-  },
-
   play: function() {
     var self = this;
-    var amount = parseInt('1.0');
+    var amount = priceforticket;
     var nickname = ''+document.getElementById("nick").value;
     console.log(nickname);
     this.setStatus("Initiating transaction... (please wait)");
@@ -103,13 +89,13 @@ window.App = {
         toBlock: 'latest'
       }).watch(function(error, event) {
         if (!error) {
-          console.log(event.args.msg.valueOf());
-          console.log("timeblock: "+event.args.time.valueOf());
+          //console.log(event.args.msg.valueOf());
+          //console.log("timeblock: "+event.args.time.valueOf());
           console.log("state: "+event.args.state.valueOf());
               document.getElementById("loader").style.visibility="hidden";   //visible
           if (!event.args.state.valueOf()) {
             //Call juego terminado function  and rendering
-            console.log("ggme over");
+            console.log("game over");
             var hsta = document.getElementById("sta")                              // declaramos el porpietario
             hsta.innerHTML = "Game over";
             self.DataOfWinner();
@@ -144,6 +130,7 @@ window.App = {
         toBlock: 'latest'
       }).watch(function(error, event) {
         if (!error) {
+          document.getElementById("alertp").style.visibility="hidden";
           //console.log(event.args.basePrice.valueOf()/1000000000000000000);
           //console.log(event.args.playersTop.valueOf());
           //console.log(event.args.memberOfList.valueOf());
@@ -151,12 +138,16 @@ window.App = {
           hplayers.innerHTML = event.args.playersTop.valueOf();
           var hprice = document.getElementById("price")                             // declaramos el porpietario
           hprice.innerHTML = event.args.basePrice.valueOf()/1000000000000000000 + " ETH";
+          priceforticket = event.args.basePrice.valueOf()/1000000000000000000;
+          console.log(priceforticket);
           var hdisp = document.getElementById("disp")                              // declaramos el porpietario
           hdisp.innerHTML = event.args.memberOfList.valueOf();
           var htickets = document.getElementById("tickets")                              // declaramos el porpietario
           htickets.innerHTML = event.args.playersTop.valueOf() - event.args.memberOfList.valueOf();
 
         } else {
+          document.getElementById("alertp").style.visibility="visible";
+          document.getElementById("alertp").style.class="alert alert-warning";
           console.error(error);
         }
       });

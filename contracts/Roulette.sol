@@ -10,24 +10,22 @@ contract Roulette {
 
     struct player {
         string name;
-        address adr; // person direction
-        uint pos; // mount
+        address adr;
+        uint pos;
     }
-    /*Maps*/
     mapping (uint => player) public playerlist;
-    /* Events*/
     event InitialData (uint basePrice, uint playersTop, uint memberOfList);
-    event MessageData (string msg,uint time, bool state);
-    event WinnerData (string msg, address adr , string name);
+    //event MessageData (string msg,uint time, bool state);
+    event MessageData (bool state);
+    event WinnerData (address adr , string name);
 
-    /* Constructor */
-    function Roulette() public {                //  uint _basePrice, uint _playersTop
-      basePrice = 1 * 1000000000000000000;      // _basePrice;
-      playersTop =  3;                          //  _playersTop;
+    function Roulette() public {
+      basePrice = 1 * 100000000000000000;
+      playersTop =  3;
       memberOfList = 0;
       state = true;
       InitialData(basePrice,playersTop,memberOfList);
-      MessageData('Juego Creado',block.timestamp,state);
+      MessageData(state);
     }
 
     /* functions of help*/
@@ -39,34 +37,22 @@ contract Roulette {
     }
 
     function rafflingAndfinishing() private {
-      // elect winner
       uint winer = (block.timestamp % playersTop) + 1;
-      // reward the winner
       playerlist[winer].adr.transfer(this.balance);
       state = false;
 
-      WinnerData('Ganador es: ',playerlist[winer].adr,playerlist[winer].name);
-      MessageData('Juego terminado',block.timestamp,state);
+      WinnerData(playerlist[winer].adr,playerlist[winer].name);
+      MessageData(state);
     }
-
-    function Balance() public view returns(uint) {
-      uint bal = msg.sender.balance;
-  		return bal;
-  	}
-
-    /*Mains functions*/
      function participate(string nameplayer) public payable {
-      if(state == true){
-        // add player to list
+      if(state == true && msg.value == basePrice){
         addPlayerToList(nameplayer, msg.sender);
         if(memberOfList>=playersTop){
-          //finish the play
           rafflingAndfinishing();
-
         }
         InitialData(basePrice,playersTop,memberOfList);
       }else{
-        MessageData('Juego ya terminado',block.timestamp,state);
+        MessageData(state);
         revert();
       }
     }

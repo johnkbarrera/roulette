@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 
 contract Roulette {
 
@@ -19,13 +19,13 @@ contract Roulette {
     event MessageData (bool state);
     event WinnerData (address adr , string name);
 
-    function Roulette() public {
+    constructor () public {
       basePrice = 1 * 100000000000000000;
-      playersTop =  3;
+      playersTop =  4;
       memberOfList = 0;
       state = true;
-      InitialData(basePrice,playersTop,memberOfList);
-      MessageData(state);
+      emit InitialData(basePrice,playersTop,memberOfList);
+      emit MessageData(state);
     }
 
     /* functions of help*/
@@ -38,11 +38,11 @@ contract Roulette {
 
     function rafflingAndfinishing() private {
       uint winer = (block.timestamp % playersTop) + 1;
-      playerlist[winer].adr.transfer(this.balance);
+      playerlist[winer].adr.transfer(address(this).balance);
       state = false;
 
-      WinnerData(playerlist[winer].adr,playerlist[winer].name);
-      MessageData(state);
+      emit WinnerData(playerlist[winer].adr,playerlist[winer].name);
+      emit MessageData(state);
     }
      function participate(string nameplayer) public payable {
       if(state == true && msg.value == basePrice){
@@ -50,12 +50,10 @@ contract Roulette {
         if(memberOfList>=playersTop){
           rafflingAndfinishing();
         }
-        InitialData(basePrice,playersTop,memberOfList);
+        emit InitialData(basePrice,playersTop,memberOfList);
       }else{
-        MessageData(state);
+        emit MessageData(state);
         revert();
       }
     }
-
-
 }

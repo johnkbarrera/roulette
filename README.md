@@ -24,25 +24,21 @@ Existen muchas maneras de poner tu `Smart-Contracts` sobre alguna de las redes d
   
     $ tree roulette
     roulette/
-    ├── blog
-    │   ├── __init__.py
-    │   ├── admin.py
-    │   ├── migrations
-    │   │   ├── 0001_initial.py
-    │   │   └── __init__.py
-    │   ├── models.py
-    │   ├── tests.py
-    │   └── views.py
-    ├── manage.py
-    └── mysite
-        ├── __init__.py
-        ├── settings.py
-        ├── urls.py
-        └── wsgi.py
+    ├── .git                    # git
+    ├── app			# Carpeta, donde toda la lógica del proyecto,llamamos a los Smart 
+    |                  		  contracts y diseñamos las vistas.		
+    ├── build			# Archivo para ejecutar en producción.
+    ├── contracts               # Directorio de contratos de Solidity.
+    ├── migrations              # Directorio de archivos de implementación de secuencias de comandos.
+    ├── test                    # Directorio de archivos de prueba para probar su aplicación y contratos.
+    ├── node_modules            # Componentes de node
+    ├── truffle.js 		# Archivo de configuración de truffle.
+    └── webpack.config.js       # Archivo de configuracion de instancias y plugins para nuestro proyecto.
+    └── README.md               # Default README file.
     
 
-
 ### Arquitectura de una DApp
+  ![Match function](https://user-images.githubusercontent.com/7105645/46321326-4d7cc400-c5a8-11e8-9091-0c16e5f6a9a0.png)
 
 ## Desplegando Nuestro Proyecto
 ### Requisitos
@@ -69,7 +65,7 @@ Existen muchas maneras de poner tu `Smart-Contracts` sobre alguna de las redes d
   ```git
     sudo npm install -g truffle
   ```
-- En tu navegador instalar MetaMask (para poder ejecutar los Smart Contracts)
+- En tu navegador instalar [MetaMask][Metamask] (para poder ejecutar los Smart Contracts)
   ![Match function](https://user-images.githubusercontent.com/7105645/46318508-5f586a00-c59c-11e8-8889-4e2a71f16cd4.PNG)
 
 - Instalar un nodo de Ethereum en tu computador, para poder llamarlo localmente.
@@ -154,6 +150,9 @@ Existen muchas maneras de poner tu `Smart-Contracts` sobre alguna de las redes d
   ```
 ## Listo, ahora ya podemos jugar! 
 
+  ![Match function](https://user-images.githubusercontent.com/7105645/46320643-fcb79c00-c5a4-11e8-9717-be1b516593ba.png)
+  ![Match function](https://user-images.githubusercontent.com/7105645/46320654-06410400-c5a5-11e8-8734-eb87cc2fd9b7.png)
+
 
 ## Conclusion  
 
@@ -164,3 +163,4 @@ Existen muchas maneras de poner tu `Smart-Contracts` sobre alguna de las redes d
 [Windows]:https://www.vmware.com/products/workstation.html
 [Mac]:https://www.vmware.com/products/fusion.html
 [Ubuntu]:https://www.ubuntu.com/download/desktop
+[Metamask]:https://metamask.io/#how-it-works

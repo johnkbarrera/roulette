@@ -24,17 +24,17 @@ Existen muchas maneras de poner tu `Smart-Contracts` sobre alguna de las redes d
   
     $ tree roulette
     roulette/
-    ├── .git                    # git
-    ├── app			# Carpeta, donde toda la lógica del proyecto,llamamos a los Smart 
-    |                  		  contracts y diseñamos las vistas.		
-    ├── build			# Archivo para ejecutar en producción.
-    ├── contracts               # Directorio de contratos de Solidity.
-    ├── migrations              # Directorio de archivos de implementación de secuencias de comandos.
-    ├── test                    # Directorio de archivos de prueba para probar su aplicación y contratos.
-    ├── node_modules            # Componentes de node
-    ├── truffle.js 		# Archivo de configuración de truffle.
-    └── webpack.config.js       # Archivo de configuracion de instancias y plugins para nuestro proyecto.
-    └── README.md               # Default README file.
+    ├── .git	: git
+    ├── app	: Carpeta, donde toda la lógica del proyecto,llamamos a los Smart 
+    |      	  contracts y diseñamos las vistas.		
+    ├── build	: Archivo para ejecutar en producción.
+    ├── contracts	: Directorio de contratos de Solidity.
+    ├── migrations	: Directorio de archivos de implementación de secuencias de comandos.
+    ├── test	: Directorio de archivos de prueba para probar su aplicación y contratos.
+    ├── node_modules	: Componentes de node
+    ├── truffle.js	: Archivo de configuración de truffle.
+    └── webpack.config.js	: Archivo de configuracion de instancias y plugins para nuestro proyecto.
+    └── README.md	: Default README file.
     
 
 ### Arquitectura de una DApp
@@ -151,6 +151,8 @@ Existen muchas maneras de poner tu `Smart-Contracts` sobre alguna de las redes d
 ## Listo, ahora ya podemos jugar! 
 
   ![Match function](https://user-images.githubusercontent.com/7105645/46320643-fcb79c00-c5a4-11e8-9717-be1b516593ba.png)
+  
+  
   ![Match function](https://user-images.githubusercontent.com/7105645/46320654-06410400-c5a5-11e8-8734-eb87cc2fd9b7.png)
 
 

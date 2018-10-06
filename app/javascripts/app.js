@@ -164,8 +164,8 @@ window.App = {
           console.log("who is win?");
           console.log(event);
           var hdisp = document.getElementById("disp")                              // declaramos el porpietario
-          hdisp.innerHTML = "The winner is: '"+event.args.name.valueOf()+"'   ";
-          document.getElementById("disp").style.visibility="hidden";
+          //hdisp.innerHTML = "The winner is: '"+event.args.name.valueOf()+"'   ";
+          hdisp.innerHTML = "The winner is:  ";
           var hnicktag = document.getElementById("nicktag")                              // declaramos el porpietario
           hnicktag.innerHTML = event.args.adr.valueOf();
         } else {

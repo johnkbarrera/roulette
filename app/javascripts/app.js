@@ -165,6 +165,7 @@ window.App = {
           console.log(event);
           var hdisp = document.getElementById("disp")                              // declaramos el porpietario
           hdisp.innerHTML = "The winner is: '"+event.args.name.valueOf()+"'   ";
+          document.getElementById("disp").style.visibility="hidden";
           var hnicktag = document.getElementById("nicktag")                              // declaramos el porpietario
           hnicktag.innerHTML = event.args.adr.valueOf();
         } else {
